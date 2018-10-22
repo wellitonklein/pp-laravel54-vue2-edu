@@ -2,6 +2,7 @@
 
 namespace SON\Http\Controllers\Admin;
 
+use Kris\LaravelFormBuilder\Form;
 use SON\Forms\UserForm;
 use SON\Http\Controllers\Controller;
 use SON\Models\User;
@@ -42,7 +43,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /** @var Form**/
+        $form = \FormBuilder::create(UserForm::class);
+
+        if (!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
     }
 
     /**
