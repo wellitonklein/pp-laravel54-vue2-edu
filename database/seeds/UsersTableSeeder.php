@@ -6,7 +6,7 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(\SON\User::class)->create([
+        factory(\SON\Models\User::class)->create([
             'email' => 'admin@user.com'
         ]);
     }

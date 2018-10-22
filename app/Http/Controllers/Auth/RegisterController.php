@@ -2,7 +2,7 @@
 
 namespace SON\Http\Controllers\Auth;
 
-use SON\User;
+use SON\Models\User;
 use SON\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \SON\User
+     * @return \SON\Models\User
      */
     protected function create(array $data)
     {
