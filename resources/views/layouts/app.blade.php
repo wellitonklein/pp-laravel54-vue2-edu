@@ -17,37 +17,49 @@
 <div id="app">
     @php
         $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
-        if (Auth::check()){
-            $arrayLinks = [
-                ['link' => route('admin.users.index'), 'title' => 'Usuário']
-            ];
-            $arrayLinksRight = [
-                [
-                    Auth::user()->name,
-                    [
-                        [
-                            'link' => route('logout'),
-                             'title' => 'Logout',
-                             'linkAttributes' => [
-                                    'onclick' => "event.preventDefault();document.getElementById(\"logout-form\").submit();"
-                                ]
-                         ]
-                    ]
-                ]
-            ];
-            $navbar->withContent(Navigation::links($arrayLinks))
-                    ->withContent(Navigation::links($arrayLinksRight)->right());
+            if(Auth::check()){
+                if(\Gate::allows('admin')){
+                    $arrayLinks = [
+                        ['link' => route('admin.users.index'), 'title' => 'Usuário'],
+                    ];
+                    $navbar->withContent(Navigation::links($arrayLinks));
+                }
 
-            $formLogout = FormBuilder::plain([
-                'id' => 'form-logout',
-                'url' => route('logout'),
-                'method' => 'POST',
-                'style' => 'display:none'
-            ]);
-        }
+                $arrayLinksRight = [
+                    [
+                        Auth::user()->name,
+                        [
+                            [
+                                'link' => route('logout'),
+                                'title' => 'Logout',
+                                'linkAttributes' => [
+                                    'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
+                                ]
+                            ]
+                        ]
+                    ]
+                ];
+                $navbar->withContent(Navigation::links($arrayLinksRight)->right());
+
+               $formLogout = FormBuilder::plain([
+                    'id' => 'form-logout',
+                    'url' => route('logout'),
+                    'method' => 'POST',
+                    'style' => 'display:none'
+                ]);
+            }
     @endphp
     {!! $navbar !!}
-    {!! form($formLogout) !!}
+
+    @if(Auth::check())
+        {!! form($formLogout) !!}
+    @endif
+
+    @if(Session::has('message'))
+        <div class="container">
+            {!! Alert::success(Session::get('message'))->close() !!}
+        </div>
+    @endif
 
     @yield('content')
 </div>
