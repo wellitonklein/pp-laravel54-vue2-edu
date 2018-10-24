@@ -14,8 +14,8 @@
                 {
                     $linkEdit = route('admin.users.edit',['user' => $model->id]);
                     $linkShow = route('admin.users.show',['user' => $model->id]);
-                    return Button::link('Editar')->asLinkTo($linkEdit).'|'.
-                    Button::link('Ver')->asLinkTo($linkShow);
+                    return Button::link(Icon::create('pencil'))->asLinkTo($linkEdit).'|'.
+                    Button::link(Icon::create('folder-open'))->asLinkTo($linkShow);
                 })
             !!}
         </div>
