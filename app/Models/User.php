@@ -5,6 +5,7 @@ namespace SON\Models;
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use SON\Notifications\UserCreated;
 
 class User extends Authenticatable implements TableInterface
 {
@@ -40,6 +41,9 @@ class User extends Authenticatable implements TableInterface
 
         self::assignEnrolment($user, self::ROLE_ADMIN);
         $user->save();
+        if (isset($data['send_email'])){
+            $user->notify(new UserCreated());
+        }
 
         return $user;
     }
