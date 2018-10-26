@@ -27,7 +27,7 @@
             if(Auth::check()){
                 if(\Gate::allows('admin')){
                     $arrayLinks = [
-                        ['link' => route('admin.users.index'), 'title' => 'Usuário'],
+                        ['link' => route('admin.users.index'), 'title' => 'Usuários'],
                     ];
                     $navbar->withContent(Navigation::links($arrayLinks));
                 }
