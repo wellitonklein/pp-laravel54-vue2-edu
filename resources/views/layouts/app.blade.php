@@ -8,10 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('admin.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <style type="text/css">
         @media print {
             .hidden-print{
@@ -23,7 +23,7 @@
 <body>
 <div id="app">
     @php
-        $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
+        $navbar = Navbar::withBrand(config('admin.name'), route('admin.dashboard'))->inverse();
             if(Auth::check()){
                 if(\Gate::allows('admin')){
                     $arrayLinks = [
@@ -78,6 +78,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>

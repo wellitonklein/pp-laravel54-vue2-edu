@@ -5,6 +5,6 @@
         <div class="row">
             <h3>Administração de alunos na turma</h3>
         </div>
-        <!-- Criar um component Vuejs -->
+        <class-student></class-student>
     </div>
 @endsection
