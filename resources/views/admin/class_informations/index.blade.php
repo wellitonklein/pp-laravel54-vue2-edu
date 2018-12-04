@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Listagem de turma</h3>
+            <h3>Listagem de turmas</h3>
             {!! Button::primary('Nova turma')->asLinkTo(route('admin.class_informations.create')) !!}
         </div>
         <div class="row">

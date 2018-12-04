@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassInformation extends Model implements TableInterface
 {
-
     protected $fillable = [
         'date_start',
         'date_end',
@@ -17,8 +16,8 @@ class ClassInformation extends Model implements TableInterface
         'year'
     ];
 
-    protected $date = [
-        'date_start',
+    protected $dates = [
+        'date_start', //Carbon wrapper \DateTime
         'date_end'
     ];
 
@@ -49,11 +48,11 @@ class ClassInformation extends Model implements TableInterface
      */
     public function getValueForHeader($header)
     {
-        switch ($header){
+        switch ($header) {
             case 'ID':
                 return $this->id;
             case 'Data Início':
-                return $this->date_start->format('d/m/Y');
+                return $this->date_start->format('d/m/Y'); //Carbon
             case 'Data Fim':
                 return $this->date_end->format('d/m/Y');
             case 'Ciclo':

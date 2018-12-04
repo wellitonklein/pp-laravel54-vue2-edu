@@ -3,6 +3,7 @@
 namespace SON\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use SON\Forms\ClassInformationForm;
 use SON\Http\Controllers\Controller;
 use SON\Models\ClassInformation;
 

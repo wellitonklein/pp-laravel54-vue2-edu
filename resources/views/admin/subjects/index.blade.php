@@ -18,6 +18,6 @@
                 })
              !!}
         </div>
-        {!! $class_informations->links() !!}
+        {!! $subjects->links() !!}
     </div>
 @endsection
