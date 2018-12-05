@@ -1,24 +1,26 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
-
-                    <div class="panel-body">
-                        I'm an example component!
-                    </div>
-                </div>
-            </div>
+    <div>
+        <div class="form-group">
+            <label class="control-label">Selecionar estudante</label>
+            <select name="students" class="form-control"></select>
         </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nome</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
     export default {
-        name: "ClassStudent",
-        mounted() {
-            console.log('Component mounted.')
-        }
+        name: "ClassStudent"
     }
 </script>
