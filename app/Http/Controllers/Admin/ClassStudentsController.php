@@ -13,6 +13,8 @@ class ClassStudentsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     * @param ClassInformation $class_information
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, ClassInformation $class_information)
@@ -27,7 +29,8 @@ class ClassStudentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param ClassStudentRequest $request
+     * @param ClassInformation $class_information
      * @return \Illuminate\Http\Response
      */
     public function store(ClassStudentRequest $request, ClassInformation $class_information)

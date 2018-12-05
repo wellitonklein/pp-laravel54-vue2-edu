@@ -14,7 +14,7 @@
             </thead>
             <tbody>
             <tr v-for="student in students">
-                <td>Excluir</td>
+                <td>Remover</td>
                 <td>{{student.user.name}}</td>
             </tr>
             </tbody>
@@ -28,14 +28,14 @@
     import 'select2'
     export default {
         name: "ClassStudent",
-        props: ['ClassInformation'],
+        props: ['classInformation'],
         computed:{
             students(){
                 return store.state.classStudent.students
             }
         },
         mounted(){
-            store.dispatch('classStudent/query', this.ClassInformation)
+            store.dispatch('classStudent/query', this.classInformation)
             $("select[name=students]").select2({
                 ajax: {
                     url: `${ADMIN_CONFIG.API_URL}/students`,
@@ -55,6 +55,15 @@
                     }
                 },
                 minimumInputLength: 3
+            })
+
+            let self = this
+
+            $("select[name=students]").on('select2:select', event => {
+                store.dispatch('classStudent/store', {
+                    studentId: event.params.data.id,
+                    classInformationId: self.classInformation
+                }).then(() => alert('Aluno adicionado com sucesso'))
             })
         }
     }
