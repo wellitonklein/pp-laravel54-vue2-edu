@@ -8,8 +8,11 @@ use SON\Models\Student;
 
 class StudentsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Student::all();
+        $search = $request->get('q');
+        return !$search ? [] : Student::whereHas('user', function ($query) use($search){
+            $query->where('users.name', 'LIKE', "%{$search}%");
+        })->take(10)->get();
     }
 }
