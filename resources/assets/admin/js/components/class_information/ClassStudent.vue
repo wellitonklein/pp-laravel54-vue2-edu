@@ -13,14 +13,27 @@
             </tr>
             </thead>
             <tbody>
-
+            <tr v-for="student in students">
+                <td>Excluir</td>
+                <td>{{student.user.name}}</td>
+            </tr>
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
+    import store from '../../store/store'
     export default {
-        name: "ClassStudent"
+        name: "ClassStudent",
+        props: ['ClassInformation'],
+        computed:{
+            students(){
+                return store.state.classStudent.students
+            }
+        },
+        mounted(){
+            store.dispatch('classStudent/query', this.ClassInformation)
+        }
     }
 </script>
